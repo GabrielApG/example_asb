@@ -1,0 +1,23 @@
+{
+  "name": "sender_balancos_recebiveis",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@azure/identity": "^3.2.4",
+    "dotenv": "^16.3.1",
+    "mongodb": "^5.6.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@azure/service-bus": "^7.9.0",
+    "azure-functions-core-tools": "^4.x",
+    "chai": "^4.3.7",
+    "jest": "^29.6.2",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
+  }
+}
