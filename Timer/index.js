@@ -1,8 +1,8 @@
 require('dotenv').config();
-const { ServiceBusMessenger } = require('./src/services/ServiceBusMessenger');
-const { MongoDBUpdater } = require('./src/services/MongoDBUpdater');
-const { Fatura } = require('./src/models/FaturaModel');
-const logger = require('./src/log/logger');
+const { ServiceBusMessenger } = require('./../src/services/ServiceBusMessenger');
+const { MongoDBUpdater } = require('./../src/services/MongoDBUpdater');
+const { Fatura } = require('./../src/models/FaturaModel');
+const logger = require('./../src/log/logger');
 
 module.exports = async function (context, myTimer) {
     const timeStamp = new Date().toISOString();
