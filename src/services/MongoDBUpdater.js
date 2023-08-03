@@ -8,17 +8,22 @@ class MongoDBUpdater {
         this.dbName = dbName;
     }
 
-    async findCollectionsWithStatus(collectionName, status) {
+    async findCollectionsWithStatus(collectionName, statusValue) {
         try {
+            
             const db = await database.getDb(this.dbName);
             const collection = db.collection(collectionName);
-            const query = { status };
+
+            const query = { ['consumida_balanco_recebiveis']: statusValue };
             return await collection.find(query).toArray();
+
         } catch (error) {
+            
             logger.error('Erro ao buscar coleções com status:', error);
             throw error;
         }
     }
+    
 
     async updateCollectionStatus(collectionName, documents, newStatus) {
         try {
@@ -26,13 +31,15 @@ class MongoDBUpdater {
             const collection = db.collection(collectionName);
             const updatePromises = documents.map(async document => {
                 const filter = { _id: new ObjectId(document._id) };
-                const update = { $set: { status: newStatus } };
+                const update = { $set: { consumida_balanco_recebiveis: newStatus } };
                 return await collection.updateOne(filter, update);
             });
 
             await Promise.all(updatePromises);
-            logger.info(`Atualizados ${documents.length} documentos para o novo status "${newStatus}" na coleção "${collectionName}"`);
+            logger.info(`Atualizados ${documents.length} documentos para o novo status consumida_balanco_recebiveis "${newStatus}" na coleção "${collectionName}"`);
+
         } catch (error) {
+            
             logger.error('Erro ao atualizar coleção:', error);
             throw error;
         }
